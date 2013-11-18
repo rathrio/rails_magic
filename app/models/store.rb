@@ -1,16 +1,22 @@
 class Store
   attr_accessor :name, :plz
 
+  @all = []
+
   def self.all
-    @all ||= []
+    @all
   end
 
   def self.find(name)
-    all.find { |store| store.name = name }
+    @all.find { |store| store.name = name }
   end
 
   def self.add(store)
-    all << store
+    @all << store
+  end
+
+  def self.remove(store)
+    @all.delete store
   end
 
   def valid?
@@ -26,6 +32,6 @@ class Store
   end
 
   def delete
-    self.class.all.delete self
+    self.class.remove self
   end
 end
