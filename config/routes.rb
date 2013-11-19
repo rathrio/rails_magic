@@ -1,13 +1,7 @@
 RailsMagic::Application.routes.draw do
   root 'stores#index'
 
-  get 'stores/' => 'stores#index'
-  get 'stores/new' => 'stores#new'
-  post 'stores' => 'stores#create'
-  get 'stores/:name' => 'stores#show'
-  get 'stores/:name/edit' => 'stores#edit'
-  put 'stores/:name' => 'stores#update'
-  delete 'stores/:name' => 'stores#destroy'
+  resources :stores
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

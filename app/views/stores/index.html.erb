@@ -1,13 +1,13 @@
 <h1> All Stores </h1>
 
-<%= link_to "new store", "/stores/new" %>
+<%= link_to "new store", new_store_path %>
 <br/>
 <hr/>
 
 <% @stores.each do |store| %>
   <%= store.name %> |
   <%= store.plz %> |
-  <%= link_to "edit", "/stores/#{store.name}/edit" %> |
-  <%= link_to "delete", "/stores/#{store.name}", :method => :delete, :data => { :confirm => "You sure?" } %>
+  <%= link_to "edit", edit_store_path(store.id) %> |
+  <%= link_to "delete", store_path(store.id), :method => :delete, :data => { :confirm => "You sure?" } %>
   <hr/>
 <% end %>

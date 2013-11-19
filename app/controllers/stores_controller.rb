@@ -5,44 +5,45 @@ class StoresController < ApplicationController
 
   def new
     @store = Store.new
-    render "new"
+    render "form", :locals => { :title => "Create Store", :store => @store, :submit_button_name => "create" }
   end
 
   def show
-    @store = Store.find params[:name]
+    @store = Store.find params[:id]
   end
 
   def create
-    store = Store.new
-    store.name = params[:store][:name]
-    store.plz = params[:store][:plz]
-    if store.valid?
-      store.save
-      redirect_to "/stores"
+    store = Store.new store_params
+    if store.save
+      redirect_to stores_path
     else
       raise "STORE NOT VALID"
     end
   end
 
   def edit
-    @store = Store.find params[:name]
-    render "edit"
+    @store = Store.find params[:id]
+    render "form", :locals => { :title => "Edit Store", :store => @store, :submit_button_name => "update" }
   end
 
   def update
-    store = Store.find params[:name]
-    store.name = params[:store][:name]
-    store.plz = params[:store][:plz]
-    if store.valid?
-      redirect_to "/stores"
+    store = Store.find params[:id]
+    if store.update_attributes store_params
+      redirect_to stores_path
     else
       raise "STORE NOT VALID"
     end
   end
 
   def destroy
-    store = Store.find params[:name]
+    store = Store.find params[:id]
     store.delete
-    redirect_to "/stores"
+    redirect_to stores_path
+  end
+
+  private
+
+  def store_params
+    params.require(:store).permit(:name, :plz)
   end
 end

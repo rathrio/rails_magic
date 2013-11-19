@@ -1,7 +1,0 @@
-<h1> Edit Store </h1>
-
-<%= form_tag "/stores/#{@store.name}", :method => :put do %>
-  <%= text_field_tag "store[name]", @store.name %>
-  <%= text_field_tag "store[plz]", @store.plz %>
-  <%= submit_tag "update" %>
-<% end %>
