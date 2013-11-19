@@ -1,4 +1,6 @@
 RailsMagic::Application.routes.draw do
+  root 'stores#index'
+
   get 'stores/' => 'stores#index'
   get 'stores/new' => 'stores#new'
   post 'stores' => 'stores#create'
